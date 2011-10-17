@@ -1,24 +1,26 @@
 #pragma once
-#include "account.h"
+#include "DebitAccount.h"
 
-class CreditAccount : public Account
+/*
+	For the specification given SavingsAccount does not actually extend DebitAccount
+*/
+class SavingsAccount : public DebitAccount
 {
 public:
 
 	// -------------------------------------------------------------------------------------------- //
 	// constructors / destructors
-
-	CreditAccount
-	(	
+	SavingsAccount
+	(
 		int accountId, int customerId, string accountName,
 		double interestRate, double balance = 0
-	);
-
+	) : DebitAccount
+	(
+		accountId, customerId, accountName,
+		interestRate, balance = 0
+	){}
+	
 	// -------------------------------------------------------------------------------------------- //
-	// behaviours
-
-	virtual void deposit(double amount) throw (TransactionException);
-	virtual void applyInterest();
-
+	
 };
 

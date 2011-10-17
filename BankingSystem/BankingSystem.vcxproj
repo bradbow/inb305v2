@@ -88,31 +88,12 @@
     <None Include="WithdrawalTransactions.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Account.cpp" />
     <ClCompile Include="AccountServices.cpp" />
+    <ClCompile Include="ApplicationController.cpp" />
     <ClCompile Include="CreditAccount.cpp" />
-    <ClCompile Include="date.cpp" />
+    <ClCompile Include="DebitAccount.cpp" />
     <ClCompile Include="Deposit.cpp" />
-    <ClCompile Include="HomeLoanAccount.cpp" />
-    <ClCompile Include="IdentifierObject.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="SavingsAccount.cpp" />
-    <ClCompile Include="Temp.cpp">
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</CompileAsManaged>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <MinimalRebuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</MinimalRebuild>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Default</BasicRuntimeChecks>
-      <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ProgramDatabase</DebugInformationFormat>
-      <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Async</ExceptionHandling>
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</CompileAsManaged>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-      <MinimalRebuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</MinimalRebuild>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Default</BasicRuntimeChecks>
-      <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ProgramDatabase</DebugInformationFormat>
-      <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Async</ExceptionHandling>
-    </ClCompile>
     <ClCompile Include="TextFileDataSource.cpp" />
     <ClCompile Include="Transfer.cpp" />
     <ClCompile Include="User.cpp" />
@@ -125,23 +106,24 @@
   <ItemGroup>
     <ClInclude Include="Account.h" />
     <ClInclude Include="AccountServices.h" />
+    <ClInclude Include="ApplicationController.h" />
+    <ClInclude Include="BaseException.hpp" />
     <ClInclude Include="CreditAccount.h" />
+    <ClInclude Include="CreditCardAccount.hpp" />
+    <ClInclude Include="DebitAccount.h" />
+    <ClInclude Include="HomeLoanAccount.hpp" />
     <ClInclude Include="IdMap.h" />
     <ClInclude Include="DataSource.h" />
-    <ClInclude Include="date.h" />
     <ClInclude Include="Deposit.h" />
-    <ClInclude Include="HomeLoanAccount.h" />
     <ClInclude Include="IController.h" />
     <ClInclude Include="IModel.h" />
     <ClInclude Include="IObserver.h" />
     <ClInclude Include="ISubject.h" />
     <ClInclude Include="IView.h" />
-    <ClInclude Include="SavingsAccount.h" />
-    <ClInclude Include="Temp.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
+    <ClInclude Include="SavingsAccount.hpp" />
     <ClInclude Include="TextFileDataSource.h" />
     <ClInclude Include="Transaction.h" />
+    <ClInclude Include="TransactionExceptions.hpp" />
     <ClInclude Include="Transfer.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="UserServices.h" />
@@ -159,11 +141,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Temp.resx">
-      <DependentUpon>Temp.h</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

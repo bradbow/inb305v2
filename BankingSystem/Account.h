@@ -2,10 +2,9 @@
 // Models a customer account and contains accessors
 // and mutators for account information
 
-// test comment
-
-#include "Transaction.h"
+#include "TransactionExceptions.hpp"
 #include <string>
+#pragma warning( disable : 4290 )
 using std::string;
 
 #ifndef _ACCOUNT_H
@@ -14,50 +13,55 @@ using std::string;
 class Account
 {
 public:
-	
-	friend class SavingsAccount;
-	friend class CreditAccount;
-	friend class HomeLoanAccount;
-	enum accountType { SAVINGS, CREDIT, HOME_LOAN };
-	// constructor
-	// precondition: valid account details passed in
-	// postcondition: an account is created
-	Account(int accountID,
-			string accountName,
-			double interestRate, 
-			double balance);
-	// destructor
-	// precondition: none
-	// postcondition: memory deallocated
-	~Account(void);
 
-	// precondition: valid accountName passed in
-	// postcondition: accountName set
-	void setAccountName(string accountName);
-	// precondition: none
-	// postcondition: accountName returned
-	string getAccountName(void);
-	// precondition: none
-	// postcondition: interestRate returned
-	double getInterestRate(void);
-	// precondition: valid interestRate passed in
-	// postcondition: interestRate set
-	void setInterestRate(double interestRate);
-	// precondition: none
-	// postcondition: balance returned
-	double getBalance(void);
+	// ----------------------------------------------------------------------------------------- // 
+	// Constructors / Destruction
+	
+	Account
+	(
+		int accountId, int customerId, string accountName,
+		double interestRate, double balance = 0
+	) : _accountId(accountId), _customerId(customerId), 
+	    _accountName(accountName), _interestRate(interestRate),
+		_balance(balance){}
+
+	
+	// ----------------------------------------------------------------------------------------- // 
+	// getters
 
 	int getAccountId(){return _accountId;}
+	int getCustomerId(){return _customerId;}
+	string getAccountName(){return _accountName;}
+	double getInterestRate(){return _interestRate;}
+	double getBalance(){return _balance;}
 
-	accountType getAccountType(){return _type;}
+	// ----------------------------------------------------------------------------------------- // 
+	// setters
+
+	void setAccountName(string value){_accountName = value;}
+	void setInterestRate(double value){_interestRate = value;}
+	void setBalance(double value){_balance = value;}
+
+	// ----------------------------------------------------------------------------------------- // 
+	// behaviours
+
+	virtual void deposit(double amount) throw (TransactionException) = 0;
+	virtual void applyInterest() = 0;
+
+	// ----------------------------------------------------------------------------------------- // 
 
 private:
 
+	// ----------------------------------------------------------------------------------------- // 
+	// data members
+
 	int _accountId;
-	int _customerID;
-	accountType _type;
+	int _customerId;
 	string _accountName;
 	double _interestRate;
 	double _balance;
+
+	// ----------------------------------------------------------------------------------------- // 
+	
 };
 #endif

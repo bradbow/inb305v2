@@ -3,9 +3,10 @@
 #include "User.h"
 #include "BankClerk.h"
 #include "Customer.h"
-#include "SavingsAccount.h"
+#include "DebitAccount.h"
 #include "CreditAccount.h"
-#include "HomeLoanAccount.h"
+#include "HomeLoanAccount.hpp"
+#include "CreditCardAccount.hpp"
 #include "Withdrawal.h"
 #include "Deposit.h"
 #include "Transfer.h"
@@ -24,7 +25,7 @@ std::string* TextFileDataSource::_fileNames;
 // --------------------------------------------------------------------------------------------- //
 // constructors / destructors / instance retrieval
 
-DataSource* TextFileDataSource::getInstance()
+TextFileDataSource* TextFileDataSource::getInstance()
 {
 
 	if (_ds == NULL)
@@ -43,7 +44,7 @@ TextFileDataSource::TextFileDataSource()
 	m_pfns[CUSTOMERS] = &TextFileDataSource::ConstructAndAddCustomer;
 	m_pfns[BANK_CLERKS] = &TextFileDataSource::ConstructAndAddBankClerk;
 	m_pfns[SAVINGS_ACCOUNTS] = &TextFileDataSource::ConstructAndAddSavingsAccount;
-	m_pfns[CREDIT_CARD_ACCOUNTS] = &TextFileDataSource::ConstructAndAddCreditAccount;
+	m_pfns[CREDIT_CARD_ACCOUNTS] = &TextFileDataSource::ConstructAndAddCreditCardAccount;
 	m_pfns[HOME_LOAN_ACCOUNTS] = &TextFileDataSource::ConstructAndAddHomeLoanAccount;
 	m_pfns[WITHDRAWALS] = &TextFileDataSource::ConstructAndAddWithdrawalTransaction;
 	m_pfns[DEPOSITS] = &TextFileDataSource::ConstructAndAddDepositTransaction;
@@ -164,6 +165,7 @@ void TextFileDataSource::ConstructAndAddSavingsAccount(string line)
 	enum
 	{
 		ACCOUNT_ID,
+		CUSTOMER_ID,
 		ACCOUNT_NAME,
 		INTEREST_RATE,
 		BALANCE,
@@ -172,23 +174,25 @@ void TextFileDataSource::ConstructAndAddSavingsAccount(string line)
 
 	vector<string> lineSplit = StringUtils::splitString(line, ',');
 
-	SavingsAccount sa
+	DebitAccount da
 	(
 		TypeConverter(lineSplit[ACCOUNT_ID]),
+		TypeConverter(lineSplit[CUSTOMER_ID]),
 		lineSplit[ACCOUNT_NAME],
 		TypeConverter(lineSplit[INTEREST_RATE]),
 		TypeConverter(lineSplit[BALANCE])
 	);
 
-	_accounts.add(sa.getAccountId(), &sa);
+	_accounts.add(da.getAccountId(), &da);
 
 }
 
-void TextFileDataSource::ConstructAndAddCreditAccount(string line)
+void TextFileDataSource::ConstructAndAddCreditCardAccount(string line)
 {
 	enum
 	{
 		ACCOUNT_ID,
+		CUSTOMER_ID,
 		ACCOUNT_NAME,
 		INTEREST_RATE,
 		BALANCE,
@@ -198,9 +202,10 @@ void TextFileDataSource::ConstructAndAddCreditAccount(string line)
 
 	vector<string> lineSplit = StringUtils::splitString(line, ',');
 
-	CreditAccount ca
+	CreditCardAccount ca
 	(
 		TypeConverter(lineSplit[ACCOUNT_ID]),
+		TypeConverter(lineSplit[CUSTOMER_ID]),
 		lineSplit[ACCOUNT_NAME],
 		TypeConverter(lineSplit[INTEREST_RATE]),
 		TypeConverter(lineSplit[BALANCE]),
@@ -216,6 +221,7 @@ void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
 	enum
 	{
 		ACCOUNT_ID,
+		CUSTOMER_ID,
 		ACCOUNT_NAME,
 		INTEREST_RATE,
 		BALANCE,
@@ -229,11 +235,12 @@ void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
 
 	// TODO Brad & Jeff: Dangerous....
 	int nOption = TypeConverter(lineSplit[REPAYMENT_OPTION]);
-	HomeLoanAccount::repaymentOption option = static_cast<HomeLoanAccount::repaymentOption>(nOption);
+	HomeLoanAccount::RepaymentOption option = static_cast<HomeLoanAccount::RepaymentOption>(nOption);
 
 	HomeLoanAccount hla
 	(
 		TypeConverter(lineSplit[ACCOUNT_ID]),
+		TypeConverter(lineSplit[CUSTOMER_ID]),
 		lineSplit[ACCOUNT_NAME],
 		TypeConverter(lineSplit[INTEREST_RATE]),
 		TypeConverter(lineSplit[BALANCE]),

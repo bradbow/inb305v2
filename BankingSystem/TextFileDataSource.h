@@ -29,7 +29,7 @@ public:
 	};
 
 	// constructors / destructors
-	static DataSource* getInstance();
+	static TextFileDataSource* getInstance();
 	void setFileNames(string fileNames[]);
 	virtual ~TextFileDataSource(void){};
 
@@ -56,7 +56,7 @@ public:
 	
 protected:
 
-	static DataSource* _ds;
+	static TextFileDataSource* _ds;
 
 	// file names
 	static std::string* _fileNames;
@@ -70,7 +70,7 @@ protected:
 	void ConstructAndAddCustomer(string line);
 	void ConstructAndAddBankClerk(string line);
 	void ConstructAndAddSavingsAccount(string line);
-	void ConstructAndAddCreditAccount(string line);
+	void ConstructAndAddCreditCardAccount(string line);
 	void ConstructAndAddHomeLoanAccount(string line);
 	void ConstructAndAddWithdrawalTransaction(string line);
 	void ConstructAndAddDepositTransaction(string line);

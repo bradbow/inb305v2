@@ -3,11 +3,12 @@
 // accounts.
 
 #include "Account.h"
-#include "SavingsAccount.h"
-#include "HomeLoanAccount.h"
-#include "CreditAccount.h"
+#include "DebitAccount.h"
+#include "DataSource.h"
+#include "CreditCardAccount.hpp"
+#include "HomeLoanAccount.hpp"
 
-#include <list>
+#include <vector>
 using namespace std;
 
 #include <string>
@@ -21,56 +22,77 @@ public:
 
 	enum accountType{ SAVINGS_ACC, CREDIT_ACC, HOME_LOAN_ACC};
 
-	// precondition: none
-	// postcondition: instanceFlag is set to false
+	// -------------------------------------------------------------------------------------------- //
+	// constructors / destructors / instance retreival
+
 	~AccountServices(void){}
-	// employs singleton pattern to ensure that there is only ever one
-	// AccountServices instance
+
 	// precondition: none
 	// postcondition: an AccountSerices is returned, if none is alreay
 	// available one is created then returned
 	static AccountServices *instance(void);
+
+	// -------------------------------------------------------------------------------------------- //
+	// behaviours
+
 	// precondition: valid parameters passed in
 	// postcondition: a savings account is created and returned
-	SavingsAccount *createSavingsAccount (int accountID, string accountName, 
-                              double interestRate, double balance);
+	void makeSavingsAccount 
+	(
+		string accountName, int customerId,
+        double interestRate, double balance
+	);
+
 	// precondition: valid parameters passed in
 	// postcondition: a credit account is created and returned
-	CreditAccount *createCreditCardAccount (int accountID, string accountName, 
-                                   double interestRate, double balance,
-                                   double overdraftLimit);
+	void makeCreditCardAccount 
+	(
+		string accountName, int customerId,
+        double interestRate, double balance,
+        double overdraftLimit
+	);
+
 	// precondition: valid parameters passed in
 	// postcondition: a home loan account is created and returned
-	HomeLoanAccount *createHomeLoanAccount (int accountID, string accountName, 
-                                   double interestRate, double balance,
-                                   string propertyAddress, 
-                                   HomeLoanAccount::repaymentOption option, 
-                                   double minimumRepayment);
+	void makeHomeLoanAccount 
+	(
+		string accountName, int customerId,
+        double interestRate, double balance,
+        string propertyAddress, HomeLoanAccount::RepaymentOption option, 
+        double minimumRepayment
+	);
 
 	// precondition: valid accountID with a zero balance is passed in
 	// postcondition: account matching accountID is closed 
 	void closeAccount(int accountID);
-	// precondition: valid accountType and accountID are passed in
-	// postcondition: old details are replaced by new
-	void changeAccountDetails(accountType type, string details[ ], int accountID);
+
 	// precondition: valid accountID passed in
 	// postcondition: Account matching accountID returned
 	Account *getAccount(int accountID);
-	// precondition: valid transaction passed in
-	// postcondition: changes made to accounts contained within
-	// transaction
-	//void performTransaction(Transaction* account) throws Exception;
+
 	// precondition: valid customerID passed in
 	// postcondition: list of accounts matching customerID returned
-	list<Account*> getCustomerAccounts(int customerID);
+	vector<Account*> getAccountsForCustomer(int customerID);
 
+	void setDataSource(DataSource* ds){_ds = ds;}
+
+
+	// -------------------------------------------------------------------------------------------- //
 
 private:
+
 	static AccountServices* _accountServicesInstance;
-	// constructor
+	static DataSource* _ds;
+	
 	// precondition: none
 	// postcondition: creates instance of AccountServices
 	AccountServices(){}	
+
+	// -------------------------------------------------------------------------------------------- //
+	// utility
+
+	int getNextAccountId(){return 1;}
+
 };
 #endif
 

@@ -4,12 +4,18 @@
 // ever one AccountServices
 
 #include "AccountServices.h"
+#include "DebitAccount.h"
+#include "ApplicationController.h"
 #include "Customer.h"
 #include <sstream>
 
 using std::stringstream;
 
+DataSource* AccountServices::_ds = NULL;
 AccountServices* AccountServices::_accountServicesInstance = NULL;
+
+// -------------------------------------------------------------------------------------------- //
+// constructors / destructors / instance retreival
 
 // precondition: none
 // postcondition: an AccountSerices is returned, if none is alreay
@@ -24,28 +30,47 @@ AccountServices *AccountServices::instance(void){
 	return _accountServicesInstance;
 }
 
+// -------------------------------------------------------------------------------------------- //
+// behaviours
+
 // precondition: valid parameters passed in
 // postcondition: a savings account is created and returned
-SavingsAccount *AccountServices::createSavingsAccount (int accountID, string accountName, 
-									double interestRate, double balance){
+void AccountServices::makeSavingsAccount 
+(
+	string accountName, int customerId,
+	double interestRate, double balance
+)
+{
+	
+	int accountId = getNextAccountId();
+	DebitAccount da (accountId, customerId, accountName, interestRate);
+	_ds->addAccount(&da);
 
-	return new SavingsAccount(	accountID, 
-								accountName, 
-								interestRate, 
-								balance);
 }
 
 // precondition: valid parameters passed in 
 // postcondition: a credit account is created and returned
-CreditAccount *AccountServices::createCreditCardAccount (int accountID, string accountName, 
-                                   double interestRate, double balance,
-								   double overdraftLimit){
+void AccountServices::makeCreditCardAccount 
+(
+    string accountName, int customerId,
+    double interestRate, double balance,
+	double overdraftLimit
+)
+{
 
-	return new CreditAccount(	accountID,
-								accountName, 
-								interestRate, 
-								balance, 
-								overdraftLimit);
+	int accountId = getNextAccountId();
+	CreditCardAccount cca
+		(	
+			accountId,
+			customerId,
+			accountName, 
+			interestRate, 
+			balance, 
+			overdraftLimit
+		);
+
+	_ds->addAccount(&cca);
+
 }
 
 // precondition: valid parameters passed in

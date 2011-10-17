@@ -6,13 +6,26 @@ using namespace std;
 class Withdrawal : public Transaction
 {
 public:
+	 
+	// ----------------------------------------------------------------------------------------- // 
+	// constructors / destructors
 
-	Withdrawal(int id, double amount, int customerId, date dt, int accountId);
+	Withdrawal(int id, double amount, int customerId, date dt, DebitAccount* account);
+
+	// ----------------------------------------------------------------------------------------- // 
+	// behaviours
 	virtual void execute();
+	virtual void rollback();
 
 private:
 
-	int _accountId;
+	// ----------------------------------------------------------------------------------------- // 
+	// data members
 
+	DebitAccount* _account;
+	double _preTransactionBalance;
+
+	// ----------------------------------------------------------------------------------------- // 
+	
 };
 

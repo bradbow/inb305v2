@@ -110,6 +110,9 @@
     <Filter Include="Data Structures\Source Files">
       <UniqueIdentifier>{caf26a01-26fb-476f-9531-566f6c7fa958}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Exceptions">
+      <UniqueIdentifier>{e9fa9575-12d3-4469-94b8-b2fd58bf7ba1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -145,19 +148,7 @@
     <ClCompile Include="User.cpp">
       <Filter>Users\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Account.cpp">
-      <Filter>Accounts\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AccountServices.cpp">
-      <Filter>Accounts\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SavingsAccount.cpp">
-      <Filter>Accounts\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CreditAccount.cpp">
-      <Filter>Accounts\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HomeLoanAccount.cpp">
       <Filter>Accounts\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BankClerk.cpp">
@@ -184,9 +175,15 @@
     <ClCompile Include="Withdrawal.cpp">
       <Filter>Transactions\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="date.cpp" />
-    <ClCompile Include="Temp.cpp" />
-    <ClCompile Include="IdentifierObject.cpp" />
+    <ClCompile Include="DebitAccount.cpp">
+      <Filter>Accounts\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CreditAccount.cpp">
+      <Filter>Accounts\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationController.cpp">
+      <Filter>Application\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.h">
@@ -203,15 +200,6 @@
     </ClInclude>
     <ClInclude Include="Transaction.h">
       <Filter>Transactions\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SavingsAccount.h">
-      <Filter>Accounts\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CreditAccount.h">
-      <Filter>Accounts\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HomeLoanAccount.h">
-      <Filter>Accounts\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Customer.h">
       <Filter>Users\Header Files</Filter>
@@ -234,11 +222,9 @@
     <ClInclude Include="Withdrawal.h">
       <Filter>Transactions\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="date.h" />
     <ClInclude Include="Transfer.h">
       <Filter>Transactions\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Temp.h" />
     <ClInclude Include="IController.h">
       <Filter>MVC\Framework\Header</Filter>
     </ClInclude>
@@ -257,15 +243,34 @@
     <ClInclude Include="IdMap.h">
       <Filter>Data Structures\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BaseException.hpp">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="DebitAccount.h">
+      <Filter>Accounts\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TransactionExceptions.hpp">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="CreditAccount.h">
+      <Filter>Accounts\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CreditCardAccount.hpp">
+      <Filter>Accounts\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HomeLoanAccount.hpp">
+      <Filter>Accounts\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SavingsAccount.hpp">
+      <Filter>Accounts\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationController.h">
+      <Filter>Application\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BankingSystem.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Temp.resx">
-      <Filter>Resource Files</Filter>
-    </EmbeddedResource>
   </ItemGroup>
 </Project>

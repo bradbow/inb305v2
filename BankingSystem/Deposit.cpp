@@ -1,21 +1,29 @@
 #include "Deposit.h"
 
+// ----------------------------------------------------------------------------------------- // 
+// Constructors / Destructors
 
 Deposit::Deposit
 (
 	int id, double amount, int customerId, 
-	date dt, int accountId
-) : Transaction(id, amount, customerId, dt) 
+	date dt, Account* account
+) : Transaction(id, amount, customerId, dt)
 {
-
-	_accountId = accountId;
-
+	 _account = account;
+	 _preTransactionBalance = account->getBalance();
 }
+
+// ----------------------------------------------------------------------------------------- // 
+// behaviours
 
 void Deposit::execute()
 {
+	_account->deposit(_amount);
+}
 
-
+void Deposit::rollback()
+{
+	_account->setBalance(_preTransactionBalance);
 }
 
 

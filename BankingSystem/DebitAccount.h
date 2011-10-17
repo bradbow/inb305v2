@@ -1,15 +1,16 @@
 #pragma once
-#include "account.h"
+#include "Account.h"
+#include "TransactionExceptions.hpp"
 
-class CreditAccount : public Account
+class DebitAccount: public Account
 {
 public:
-
+	
 	// -------------------------------------------------------------------------------------------- //
 	// constructors / destructors
 
-	CreditAccount
-	(	
+	DebitAccount
+	(
 		int accountId, int customerId, string accountName,
 		double interestRate, double balance = 0
 	);
@@ -17,8 +18,11 @@ public:
 	// -------------------------------------------------------------------------------------------- //
 	// behaviours
 
+	void withdraw(double amount);
 	virtual void deposit(double amount) throw (TransactionException);
 	virtual void applyInterest();
+
+	// -------------------------------------------------------------------------------------------- //
 
 };
 
