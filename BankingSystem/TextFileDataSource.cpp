@@ -10,6 +10,7 @@
 #include "Withdrawal.h"
 #include "Deposit.h"
 #include "Transfer.h"
+#include "date.h"
 #include <fstream>
 #include <string>
 #include "Utils.h"
@@ -18,8 +19,14 @@ using namespace std;
 IdMap<int, User*> TextFileDataSource::_users;
 IdMap<int, Account*> TextFileDataSource::_accounts;
 IdMap<int, Transaction*> TextFileDataSource::_transactions;
-DataSource* TextFileDataSource::_ds;
 std::string* TextFileDataSource::_fileNames; 
+
+date from_string(std::string dummy)
+{
+	date d;
+	d;
+}
+
 
 
 // --------------------------------------------------------------------------------------------- //
@@ -341,6 +348,8 @@ void TextFileDataSource::ConstructAndAddTransferTransaction(string line)
 	_transactions.add(t.getId(), &t);
 
 }
+
+
 
 // --------------------------------------------------------------------------------------------- //
 

@@ -18,7 +18,7 @@ public:
 	// -------------------------------------------------------------------------------------------- //
 	// behaviours
 
-	void withdraw(double amount);
+	virtual void withdraw(double amount);
 	virtual void deposit(double amount) throw (TransactionException);
 	virtual void applyInterest();
 

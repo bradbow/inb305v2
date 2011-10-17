@@ -184,6 +184,7 @@
     <ClCompile Include="ApplicationController.cpp">
       <Filter>Application\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="date.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.h">
@@ -267,6 +268,7 @@
     <ClInclude Include="ApplicationController.h">
       <Filter>Application\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="date.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BankingSystem.rc">

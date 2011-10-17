@@ -91,6 +91,7 @@
     <ClCompile Include="AccountServices.cpp" />
     <ClCompile Include="ApplicationController.cpp" />
     <ClCompile Include="CreditAccount.cpp" />
+    <ClCompile Include="date.cpp" />
     <ClCompile Include="DebitAccount.cpp" />
     <ClCompile Include="Deposit.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="BaseException.hpp" />
     <ClInclude Include="CreditAccount.h" />
     <ClInclude Include="CreditCardAccount.hpp" />
+    <ClInclude Include="date.h" />
     <ClInclude Include="DebitAccount.h" />
     <ClInclude Include="HomeLoanAccount.hpp" />
     <ClInclude Include="IdMap.h" />

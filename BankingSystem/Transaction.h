@@ -2,12 +2,14 @@
 #ifndef _TRANSACTION_H
 #define _TRANSACTION_H
 #include <string>
-#include "AccountServices.h"
+#include "Account.h"
+#include "DebitAccount.h"
+#include "CreditAccount.h"
 
-//#include "date.h"
-#include <boost\date_time\gregorian\gregorian.hpp>
+//#include <boost\date_time\gregorian\gregorian.hpp>
+#include "date.h"
 
-using namespace boost::gregorian;
+//using namespace boost::gregorian;
 
 class Transaction
 {
